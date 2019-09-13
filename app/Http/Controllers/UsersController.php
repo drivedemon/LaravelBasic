@@ -40,7 +40,13 @@ class UsersController extends Controller
     public function store(Request $request)
     {
       // print_r($request->input());      // debug data mode or dd($request);
-      $this->validate($request, ['fname' => 'required|max:20', 'lname' => 'required|max:20']);
+      $this->validate(
+        $request,
+        ['fname' => 'required|max:20', 'lname' => 'required|max:20'],
+        ['fname.required' => 'กรุณากรอกข้อมูลชื่อ',
+         'lname.required' => 'กรุณากรอกข้อมูลนามสกุล',
+         'fname.max' => 'ห้ามกรอกเกิน 20 ตัวอักษร',
+         'lname.max' => 'ห้ามกรอกเกิน 20 ตัวอักษร']);
       $user = new User(
           [
           'fname' => $request->get('fname'),
@@ -83,7 +89,11 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $this->validate($request, ['fname' => 'required|max:20', 'lname' => 'required|max:20']);
+      $this->validate($request, ['fname' => 'required|max:20', 'lname' => 'required|max:20'],
+      ['fname.required' => 'กรุณากรอกข้อมูลชื่อ',
+       'lname.required' => 'กรุณากรอกข้อมูลนามสกุล',
+       'fname.max' => 'ห้ามกรอกเกิน 20 ตัวอักษร',
+       'lname.max' => 'ห้ามกรอกเกิน 20 ตัวอักษร']);
       $user = User::find($id);
       $user->fname = $request->get('fname');
       $user->lname = $request->get('lname');
