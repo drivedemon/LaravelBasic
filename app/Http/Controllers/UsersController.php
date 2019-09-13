@@ -83,7 +83,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $this->validate($request, ['fname' => 'required', 'lname' => 'required']);
+      $this->validate($request, ['fname' => 'required|max:20', 'lname' => 'required|max:20']);
       $user = User::find($id);
       $user->fname = $request->get('fname');
       $user->lname = $request->get('lname');

@@ -7,7 +7,7 @@
             <br>
             <h3 align="center">เพิ่มข้อมูลผู้ใช้งาน</h3>
             <br>
-            @if(count($errors) > 0)
+            <!-- @if(count($errors) > 0)
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -15,15 +15,21 @@
                         @endforeach
                     </ul>
                 </div>
-            @endif
+            @endif -->
 
             <form method="POST" action="{{url('user')}}">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <input type="text" name="fname" class="form-control" placeholder="ป้อนชื่อ">
+                    @error('fname')
+                    <STRONG style="color:red;">{{$message}}</STRONG>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <input type="text" name="lname" class="form-control" placeholder="ป้อนนามสกุล">
+                    @error('lname')
+                    <STRONG style="color:red;">{{$message}}</STRONG>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <input type="submit" value="บันทึก" class="btn btn-primary">
