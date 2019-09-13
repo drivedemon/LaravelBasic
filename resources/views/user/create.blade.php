@@ -1,5 +1,5 @@
 @extends('user.master')
-@section('title', 'จัดการฐานข้อมูล')
+@section('title', 'เพิ่มข้อมูลผู้ใช้ระบบ')
 @section('content')
 <div class="container">
     <div class="row">
@@ -14,12 +14,6 @@
                             <li>{{$error}}</li>
                         @endforeach
                     </ul>
-                </div>
-            @endif
-
-            @if(\Session::has('success'))
-                <div class="alert alert-success">
-                    <p>{{\Session::get('success')}}</p>
                 </div>
             @endif
 

@@ -67,7 +67,7 @@ class UsersController extends Controller
     public function edit($id)
     {
       $user = User::find($id);
-      return view('edit', compact('user', 'id'));
+      return view('user.edit', compact('user', 'id'));
     }
 
     /**
@@ -79,7 +79,12 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $this->validate($request, ['fname' => 'required', 'lname' => 'required']);
+      $user = User::find($id);
+      $user->fname = $request->get('fname');
+      $user->lname = $request->get('lname');
+      $user->save();
+      return redirect()->route('user.index')->with('success', 'อัปเดตข้อมูลเรียบร้อย');
     }
 
     /**
