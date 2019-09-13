@@ -17,7 +17,7 @@
                 @endif
                 <table class="table table-bordered table-striped">
                     <tr>
-                        <th width="5%" class="text-center">No</th>
+                        <th width="5%" class="text-center">ID</th>
                         <th width="40%">Firstname</th>
                         <th width="35%">Lastname</th>
                         <th width="10%">Edit</th>
@@ -26,14 +26,14 @@
                     @php ($i = 1)
                     @foreach ($users as $row)
                         <tr>
-                            <td class="text-center">{{$i}}</td>
-                            <td>{{$row['fname']}}</td>
-                            <td>{{$row['lname']}}</td>
+                            <td class="text-center">{{$row->id}}</td>
+                            <td>{{$row->fname}}</td>
+                            <td>{{$row->lname}}</td>
                             <td>
-                              <a href="{{action('UsersController@edit', $row['id'])}}" class="btn btn-warning">Edit</a>
+                              <a href="{{action('UsersController@edit', $row->id)}}" class="btn btn-warning">Edit</a>
                             </td>
                             <td>
-                                <form method="POST" class="delete_form" action="{{action('UsersController@destroy', $row['id'])}}">
+                                <form method="POST" class="delete_form" action="{{action('UsersController@destroy', $row->id)}}">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="_method" value="DELETE">
                                     <button type="submit" class="btn btn-danger">Delete</button>
@@ -43,6 +43,7 @@
                         @php ($i++)
                     @endforeach
                 </table>
+                {{ $users->links() }}
             </div>
         </div>
     </div>

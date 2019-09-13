@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\User;
 
 class UsersController extends Controller
@@ -14,8 +15,10 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::all()->toArray();
-        return view('user.index', compact('users'));
+      $users = DB::table('users')->paginate(10);
+      return view('user.index', ['users' => $users]);
+      // $users = User::all()->toArray();
+      // return view('user.index', compact('users'));
     }
 
     /**
@@ -36,7 +39,8 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-      $this->validate($request, ['fname' => 'required', 'lname' => 'required']);
+      // print_r($request->input());      // debug data mode or dd($request);
+      $this->validate($request, ['fname' => 'required|max:20', 'lname' => 'required|max:20']);
       $user = new User(
           [
           'fname' => $request->get('fname'),
