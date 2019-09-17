@@ -4,8 +4,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12"><br>
-              <div align="center"><h1>Test CRUD Laravel Framework</h1></div>
-                <br>
+                <div class="title m-b-md">
+                    Test CRUD Laravel Framework
+                </div>
                 <div align="right">
                     <a href="{{route('user.create')}}" class="btn btn-success">Create</a>
                 </div>
